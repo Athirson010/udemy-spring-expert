@@ -1,6 +1,8 @@
 package io.github.athirson010.model.entity;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 //@Table(name = "tb_cliente", aqui estou personalizando o nome da minha entidade do banco
@@ -10,6 +12,10 @@ public class Cliente {
     private Long id;
     @Column(name = "NOME", length = 100)
     private String nome;
+
+    //Um cliente tem muitos pedidos
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos;
 
     public Cliente() {
     }
@@ -37,6 +43,14 @@ public class Cliente {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public List<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(List<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
     @Override

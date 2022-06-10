@@ -1,11 +1,16 @@
 package io.github.athirson010.model.entity;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
-
+@Entity
 public class Produto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String descricao;
-    private BigDecimal preco;
+
+    @Column(name = "preco_unitario")
+    private BigDecimal precoUnitario;
 
     public Long getId() {
         return id;
@@ -23,11 +28,11 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public BigDecimal getPreco() {
-        return preco;
+    public BigDecimal getPrecoUnitario() {
+        return precoUnitario;
     }
 
-    public void setPreco(BigDecimal preco) {
-        this.preco = preco;
+    public void setPrecoUnitario(BigDecimal precoUnitario) {
+        this.precoUnitario = precoUnitario;
     }
 }
