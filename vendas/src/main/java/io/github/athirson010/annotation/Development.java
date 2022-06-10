@@ -13,5 +13,6 @@ import java.lang.annotation.Target;
 @Configuration
 @Profile("development")
 public @interface Development {
-    //Essa é uma classe de Anotação para o profile de development, é possivel adicionar somente em classes
+    //Essa é uma classe de Anotação para o profile de development
+    //Element. For Type ele vai em classes ou field
 }
