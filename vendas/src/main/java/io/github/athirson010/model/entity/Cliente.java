@@ -1,6 +1,7 @@
 package io.github.athirson010.model.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -14,8 +15,10 @@ public class Cliente {
     private String nome;
 
     //Um cliente tem muitos pedidos
+    //@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER) por padrão é utilizado eager para não trazer
+    //os pedidos deste usuario, para não ter lentidão
     @OneToMany(mappedBy = "cliente")
-    private List<Pedido> pedidos;
+    private List<Pedido> pedidos = new ArrayList<>();
 
     public Cliente() {
     }

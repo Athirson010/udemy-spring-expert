@@ -25,4 +25,7 @@ public interface ClientesRespository extends JpaRepository<Cliente, Long> {
     @Query(" delete from Cliente c where c.nome =:nome ")
     @Modifying
     void deleteByNome(String nome);
+    @Query("select c from Cliente c left join fetch c.pedidos p where c.id = :id")
+        //buscando um cliente mesmo se não houver pedidos
+    Cliente findClienteFetchPedidos(@Param("id") Long id);
 }

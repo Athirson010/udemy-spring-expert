@@ -20,8 +20,8 @@ public class Pedido {
     @Column(name = "data_pedido")
     private LocalDate dataPedido;
 
-    @Column(name = "total", length = 20, precision = 2)
-    //precision: casas decimais após o .
+    @Column(name = "total", scale = 2, precision = 20)
+    //scale: casas decimais após o .
     private BigDecimal total;
 
     @OneToMany(mappedBy = "pedido")
