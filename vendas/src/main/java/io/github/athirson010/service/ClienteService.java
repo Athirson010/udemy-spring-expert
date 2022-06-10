@@ -1,6 +1,6 @@
 package io.github.athirson010.service;
 
-import io.github.athirson010.model.Cliente;
+import io.github.athirson010.model.entity.Cliente;
 import io.github.athirson010.repository.ClienteRespository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

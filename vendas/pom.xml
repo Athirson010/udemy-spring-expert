@@ -31,18 +31,24 @@
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
-        <!-- starter web, permite criar web services, rest API. -->
+        <!-- starter web, permite criar um app web services, rest API. -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Nos permite trabalhar com modulos de dados
+        <!-- Nos permite trabalhar com modulos de dados -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-        -->
+
+        <!-- driver de banco de dados -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+
 
     </dependencies>
 
