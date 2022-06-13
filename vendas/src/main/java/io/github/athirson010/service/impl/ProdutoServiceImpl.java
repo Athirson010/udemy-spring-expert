@@ -2,6 +2,7 @@ package io.github.athirson010.service.impl;
 
 import io.github.athirson010.model.entity.Produto;
 import io.github.athirson010.repository.ProdutosRepository;
+import io.github.athirson010.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -12,9 +13,14 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Service
-public class ProdutoServiceImpl {
+public class ProdutoServiceImpl implements ProdutoService {
     @Autowired
     private ProdutosRepository repository;
+
+    public ProdutoServiceImpl(ProdutosRepository repository) {
+        this.repository = repository;
+    }
+
     public Produto save(Produto produto) {
         return repository.save(produto);
     }

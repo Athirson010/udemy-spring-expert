@@ -1,6 +1,7 @@
 package io.github.athirson010.service;
 
 import io.github.athirson010.model.entity.Produto;
+
 import java.util.List;
 public interface ProdutoService {
 
@@ -10,7 +11,7 @@ public interface ProdutoService {
 
     void deletar(Long id);
 
-    void atualizar(Long id, Produto produto);
+    Produto atualizar(Long id, Produto produto);
 
     Produto save(Produto produto);
 }

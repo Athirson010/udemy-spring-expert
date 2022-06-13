@@ -13,12 +13,6 @@ public class VendasApplication {
     @Bean
     public CommandLineRunner init(ClientesRespository clienteRepository) {
         return args -> {
-            clienteRepository.save(new Cliente("Athirson"));
-            clienteRepository.save(new Cliente("Juninho"));
-            clienteRepository.save(new Cliente("Bahiano"));
-            clienteRepository.deleteById(3L);
-            clienteRepository.findAll().forEach(cliente -> System.out.println(cliente.toString()));
-
         };
     }
 
