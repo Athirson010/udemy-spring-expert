@@ -26,7 +26,7 @@ public class ClienteController {
     }
 
     @GetMapping("/{id}")
-    public Cliente pegarClientePorID(@PathVariable() Long id){
+    public Cliente getById(@PathVariable() Long id){
         return service.findById(id);
     }
 

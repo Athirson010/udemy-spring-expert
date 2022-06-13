@@ -1,64 +1,20 @@
 package io.github.athirson010.service;
 
 import io.github.athirson010.model.entity.Cliente;
-import io.github.athirson010.repository.ClientesRespository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
-@Service
-public class ClienteService {
-    private ClientesRespository repository;
 
-    //Construtor com a injeção de dependencia, buscando a instância que esta sendo executada.
-    @Autowired
-    public ClienteService(ClientesRespository respository) {
-        this.repository = respository;
-    }
+public interface ClienteService  {
+    Cliente salvarCliente(Cliente cliente);
 
-    //precisa explicitar que ele vai fazer uma transação na base de dados
-    public Cliente salvarCliente(Cliente cliente){
-      return repository.save(cliente);
-    }
-    public Cliente atualizar(Long id, Cliente cliente){
-        if(repository.existsById(id)){
-            repository.save(cliente);
-            return cliente;
-        }
-        throw  new ResponseStatusException(HttpStatus.NOT_FOUND);
-    }
 
-    public void deletar(Cliente cliente){
-        repository.delete(cliente);
-    }
+    Cliente atualizar(Long id, Cliente cliente);
 
-    public void deletar(Long id){
-        repository.deleteById(id);
-    }
-    public List<Cliente> buscarPeloNome(String nome) {
-      return repository.findByNomeLike(nome);
-    }
+    List<Cliente> findAll(Cliente filtro);
 
-    public List<Cliente> obterTodos(){
-        return repository.findAll();
-    }
+    void deletar(Long id);
 
-    public Cliente findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-    }
-
-    public List<Cliente> findAll(Cliente filtro) {
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withIgnoreNullValues()
-                .withIgnoreCase()
-                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
-        Example example = Example.of(filtro, matcher);
-
-        return repository.findAll(example);
-    }
+    Cliente findById(Long id);
 }
