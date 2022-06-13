@@ -3,10 +3,12 @@ package io.github.athirson010.service;
 import io.github.athirson010.model.entity.Cliente;
 import io.github.athirson010.repository.ClientesRespository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Service
@@ -23,9 +25,12 @@ public class ClienteService {
     public Cliente salvarCliente(Cliente cliente){
       return repository.save(cliente);
     }
-    public Cliente atualizar(Cliente cliente){
-        repository.save(cliente);
-        return cliente;
+    public Cliente atualizar(Long id, Cliente cliente){
+        if(repository.existsById(id)){
+            repository.save(cliente);
+            return cliente;
+        }
+        throw  new ResponseStatusException(HttpStatus.NOT_FOUND);
     }
 
     public void deletar(Cliente cliente){
@@ -41,5 +46,19 @@ public class ClienteService {
 
     public List<Cliente> obterTodos(){
         return repository.findAll();
+    }
+
+    public Cliente findById(Long id) {
+        return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+    }
+
+    public List<Cliente> findAll(Cliente filtro) {
+        ExampleMatcher matcher = ExampleMatcher.matching()
+                .withIgnoreNullValues()
+                .withIgnoreCase()
+                .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+        Example example = Example.of(filtro, matcher);
+
+        return repository.findAll(example);
     }
 }

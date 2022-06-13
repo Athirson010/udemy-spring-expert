@@ -1,5 +1,7 @@
 package io.github.athirson010.model.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,8 @@ public class Cliente {
     //Um cliente tem muitos pedidos
     //@OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER) por padrão é utilizado eager para não trazer
     //os pedidos deste usuario, para não ter lentidão
-    @OneToMany(mappedBy = "cliente")
+    @JsonIgnore
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
     private List<Pedido> pedidos = new ArrayList<>();
 
     public Cliente() {
