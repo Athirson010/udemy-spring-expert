@@ -52,7 +52,7 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     public Cliente findById(Long id) {
-        return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        return repository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado!"));
     }
 
     public List<Cliente> findAll(Cliente filtro) {
